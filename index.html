@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UBNews - Military & USA News</title>
+<title>UBNews</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial;}
@@ -12,8 +12,8 @@ body{
     background:#1c1c1c;
     color:#eee;
     line-height:1.6;
-    min-height:100vh;        /* ensures full screen height */
-    padding-bottom:100px;     /* extra bottom space */
+    min-height:100vh;        /* ensures full viewport height */
+    padding-bottom:150px;     /* extra bottom space for scrolling */
 }
 
 /* HEADER */
@@ -25,15 +25,10 @@ header{
     align-items:center;
 }
 
-header h1{color:#f39c12;}
-
-nav a{
-    margin-left:1rem;
-    color:#eee;
-    font-weight:bold;
+header h1{
+    color:#f39c12;
+    cursor:pointer;
 }
-
-nav a:hover{color:#f39c12;}
 
 /* SEARCH */
 .search-container{
@@ -116,14 +111,7 @@ footer{
 <body>
 
 <header>
-<h1>UBNews</h1>
-
-<nav>
-<a href="#">Home</a>
-<a href="#">USA</a>
-<a href="#">Military</a>
-<a href="#">Global Conflicts</a>
-</nav>
+<h1 onclick="location.href='index.html'">UBNews</h1>
 </header>
 
 <div class="search-container">
@@ -144,7 +132,7 @@ onkeyup="searchArticles()"
 <section id="searchResults" class="search-results"></section>
 
 <footer>
-<p>© 2026 UBNews - Military & USA News</p>
+<p>© 2026 UBNews</p>
 </footer>
 
 <script>
