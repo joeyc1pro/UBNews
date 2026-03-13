@@ -8,12 +8,13 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial;}
 
-body{
+html, body{
+    height: 100%;
     background:#1c1c1c;
     color:#eee;
     line-height:1.6;
-    min-height:100vh;        /* ensures full viewport height */
-    padding-bottom:150px;     /* extra bottom space for scrolling */
+    min-height:100%;
+    padding-bottom:150px; /* space at bottom so last cards visible */
 }
 
 /* HEADER */
@@ -21,7 +22,7 @@ header{
     background:#0d1117;
     padding:1rem 2rem;
     display:flex;
-    justify-content:space-between;
+    justify-content:flex-start;
     align-items:center;
 }
 
@@ -55,9 +56,15 @@ header h1{
 
 .news-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
     gap:1.5rem;
     padding:2rem;
+}
+
+@media(max-width:650px){
+    .news-grid{
+        grid-template-columns: 1fr; /* stack on small screens */
+    }
 }
 
 .news-card{
@@ -94,9 +101,15 @@ header h1{
 /* SEARCH RESULTS */
 .search-results{
     display:none;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap:1.5rem;
     padding:2rem;
+}
+
+@media(max-width:650px){
+    .search-results{
+        grid-template-columns:1fr;
+    }
 }
 
 footer{
@@ -124,11 +137,9 @@ onkeyup="searchArticles()"
 </div>
 
 <h2 class="section-title">Latest News</h2>
-
 <section id="latestNews" class="news-grid"></section>
 
 <h2 class="section-title" id="searchTitle" style="display:none;">Search Results</h2>
-
 <section id="searchResults" class="search-results"></section>
 
 <footer>
@@ -136,7 +147,6 @@ onkeyup="searchArticles()"
 </footer>
 
 <script>
-/* ARTICLE DATABASE */
 const articles = [ 
 
 {
@@ -189,9 +199,7 @@ date:"2026-03-12"
 
 ];
 
-/* SHOW ARTICLES */
 const latestContainer=document.getElementById("latestNews");
-
 articles.forEach(article=>{
     latestContainer.appendChild(createCard(article));
 });
@@ -206,12 +214,10 @@ function createCard(article){
             <h3>${article.title}</h3>
             <p>${article.desc}</p>
         </div>
-    </a>
-    `;
+    </a>`;
     return card;
 }
 
-/* SEARCH */
 function searchArticles(){
     const input=document.getElementById("searchInput").value.toLowerCase();
     const results=document.getElementById("searchResults");
