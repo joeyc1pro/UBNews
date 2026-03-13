@@ -16,14 +16,84 @@ article p { margin-bottom: 1rem; color: #ccc; }
 footer { flex-shrink: 0; background: #0d1117; text-align: center; padding: 1.5rem; color: #aaa; }
 #topBtn { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99; font-size: 18px; border: none; outline: none; background: #f39c12; color: black; cursor: pointer; padding: 12px; border-radius: 50%; }
 #topBtn:hover { background: #e08e0b; }
+
+  /* HERO IMAGE */
+
+.hero-image{
+width:100%;
+border-radius:8px;
+margin:20px 0;
+}
+
+/* READING PROGRESS BAR */
+
+#progressBar{
+position:fixed;
+top:0;
+left:0;
+height:4px;
+background:#f39c12;
+width:0%;
+z-index:200;
+}
+
+/* ARTICLE NAV BUTTONS */
+
+.article-nav{
+display:flex;
+justify-content:space-between;
+margin-top:40px;
+}
+
+.article-nav button{
+background:#f39c12;
+border:none;
+padding:12px 20px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.article-nav button:hover{
+background:#e08e0b;
+}
+
+/* RELATED ARTICLES */
+
+.related-title{
+margin-top:50px;
+color:#f39c12;
+}
+
+.related-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+margin-top:20px;
+}
+
+.related-card{
+background:#0d1117;
+padding:18px;
+border-radius:6px;
+cursor:pointer;
+color:#ccc;
+transition:0.2s;
+}
+
+.related-card:hover{
+background:#222;
+transform:translateY(-3px);
+}
 </style>
 </head>
 <body>
 
-<header><h1 onclick="location.href='index.html'">UBNews</h1></header>
+<header><img src="images/carrier-hormuz.jpg" class="hero-image"><h1 onclick="location.href='index.html'">UBNews</h1></header>
 
 <article>
 <h1>US Carrier Group Moves Toward Strait of Hormuz</h1>
+<img src="images/carrier-hormuz.jpg" class="hero-image">
 <p><b>March 12, 2026 — UBNews Military Desk</b></p>
 <p>A United States Navy carrier strike group has moved closer to the Strait of Hormuz as tensions in the region continue to rise following reports of naval mine deployments in the strategic shipping corridor.</p>
 <p>The deployment is intended to strengthen maritime security and ensure freedom of navigation through one of the world's most critical oil transit routes. Nearly one-fifth of global oil shipments pass through the narrow waterway connecting the Persian Gulf to the Gulf of Oman.</p>
@@ -34,12 +104,42 @@ footer { flex-shrink: 0; background: #0d1117; text-align: center; padding: 1.5re
 <p><a href="index.html" style="color:#f39c12;">← Back to UBNews</a></p>
 </article>
 
+<h3 class="related-title">Related Articles</h3>
+
+<div class="related-grid">
+
+<div class="related-card" onclick="location.href='hormuz-mines.html'">
+Mine-Laying Operations Reported in Strait of Hormuz
+</div>
+
+<div class="related-card" onclick="location.href='oil-prices-hormuz.html'">
+Global Oil Prices Surge Amid Hormuz Shipping Fears
+</div>
+
+<div class="related-card" onclick="location.href='gulf-patrols.html'">
+International Naval Coalition Expands Patrols
+</div>
+
+</div>
+
 <footer>© 2026 UBNews</footer>
 <button onclick="topFunction()" id="topBtn" title="Back to top">↑</button>
 <script>
 const topBtn=document.getElementById("topBtn");
 window.onscroll=function(){ if(document.body.scrollTop>200||document.documentElement.scrollTop>200){topBtn.style.display="block";} else{topBtn.style.display="none";} };
 function topFunction(){document.body.scrollTop=0;document.documentElement.scrollTop=0;}
+
+window.addEventListener("scroll",function(){
+
+const winScroll=document.body.scrollTop||document.documentElement.scrollTop;
+const height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+
+const scrolled=(winScroll/height)*100;
+
+document.getElementById("progressBar").style.width=scrolled+"%";
+
+});
+
 </script>
 </body>
 </html>
