@@ -6,114 +6,110 @@
 <title>UBNews - Military & USA News</title>
 
 <style>
-
 *{box-sizing:border-box;margin:0;padding:0;font-family:Arial;}
 
 body{
-background:#1c1c1c;
-color:#eee;
-line-height:1.6;
+    background:#1c1c1c;
+    color:#eee;
+    line-height:1.6;
+    min-height:100vh;        /* ensures full screen height */
+    padding-bottom:100px;     /* extra bottom space */
 }
 
 /* HEADER */
-
 header{
-background:#0d1117;
-padding:1rem 2rem;
-display:flex;
-justify-content:space-between;
-align-items:center;
+    background:#0d1117;
+    padding:1rem 2rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
 header h1{color:#f39c12;}
 
 nav a{
-margin-left:1rem;
-color:#eee;
-font-weight:bold;
+    margin-left:1rem;
+    color:#eee;
+    font-weight:bold;
 }
 
 nav a:hover{color:#f39c12;}
 
 /* SEARCH */
-
 .search-container{
-padding:1.5rem;
-text-align:center;
-background:#161616;
+    padding:1.5rem;
+    text-align:center;
+    background:#161616;
 }
 
 #searchInput{
-width:60%;
-max-width:500px;
-padding:10px;
-border:none;
-border-radius:5px;
-font-size:16px;
+    width:60%;
+    max-width:500px;
+    padding:10px;
+    border:none;
+    border-radius:5px;
+    font-size:16px;
 }
 
 /* NEWS */
-
 .section-title{
-color:#f39c12;
-padding:2rem 2rem 0 2rem;
-font-size:1.4rem;
+    color:#f39c12;
+    padding:2rem 2rem 0 2rem;
+    font-size:1.4rem;
 }
 
 .news-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:1.5rem;
-padding:2rem;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.5rem;
+    padding:2rem;
 }
 
 .news-card{
-background:#252525;
-border-radius:8px;
-overflow:hidden;
-transition:0.3s;
+    background:#252525;
+    border-radius:8px;
+    overflow:hidden;
+    transition:0.3s;
 }
 
 .news-card:hover{
-transform:translateY(-5px);
+    transform:translateY(-5px);
 }
 
 .news-card img{
-width:100%;
-height:180px;
-object-fit:cover;
+    width:100%;
+    height:180px;
+    object-fit:cover;
 }
 
 .news-card-content{
-padding:1rem;
+    padding:1rem;
 }
 
 .news-card-content h3{
-color:#f39c12;
-margin-bottom:5px;
+    color:#f39c12;
+    margin-bottom:5px;
 }
 
 .news-card-content p{
-color:#ccc;
-font-size:0.95rem;
+    color:#ccc;
+    font-size:0.95rem;
 }
 
 /* SEARCH RESULTS */
-
 .search-results{
-display:none;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:1.5rem;
-padding:2rem;
+    display:none;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:1.5rem;
+    padding:2rem;
 }
 
 footer{
-background:#0d1117;
-text-align:center;
-padding:1.5rem;
-color:#aaa;
+    background:#0d1117;
+    text-align:center;
+    padding:1.5rem;
+    color:#aaa;
 }
-
 </style>
 </head>
 
@@ -152,9 +148,7 @@ onkeyup="searchArticles()"
 </footer>
 
 <script>
-
 /* ARTICLE DATABASE */
-
 const articles = [ 
 
 {
@@ -174,87 +168,71 @@ date:"2026-03-12"
 },
 
 {
-  title: "US Defense Spending Sees Largest Increase in Decade",
-  image: "images/defense-spending.jpg",
-  desc: "Congress approves an $875 billion budget to modernize US military equipment and enhance cyber defenses.",
-  link: "defense-spending.html",
-  date: "2026-03-12"
+title:"US Defense Spending Sees Largest Increase in Decade",
+image:"images/defense-spending.jpg",
+desc:"Congress approves an $875 billion budget to modernize US military equipment and enhance cyber defenses.",
+link:"defense-spending.html",
+date:"2026-03-12"
 },
 
 {
-  title: "US Troops Conduct Joint Exercises in Eastern Europe",
-  image: "images/europe-exercises.jpg",
-  desc: "US and NATO forces conduct large-scale joint exercises to enhance readiness and interoperability.",
-  link: "europe-exercises.html",
-  date: "2026-03-12"
+title:"US Troops Conduct Joint Exercises in Eastern Europe",
+image:"images/europe-exercises.jpg",
+desc:"US and NATO forces conduct large-scale joint exercises to enhance readiness and interoperability.",
+link:"europe-exercises.html",
+date:"2026-03-12"
 }
 
 ];
 
-
 /* SHOW ARTICLES */
-
 const latestContainer=document.getElementById("latestNews");
 
 articles.forEach(article=>{
-latestContainer.appendChild(createCard(article));
+    latestContainer.appendChild(createCard(article));
 });
-
 
 function createCard(article){
-
-const card=document.createElement("div");
-
-card.className="news-card";
-
-card.innerHTML=`
-
-<a href="${article.link}">
-<img src="${article.image}">
-<div class="news-card-content">
-<h3>${article.title}</h3>
-<p>${article.desc}</p>
-</div>
-</a>
-
-`;
-
-return card;
+    const card=document.createElement("div");
+    card.className="news-card";
+    card.innerHTML=`
+    <a href="${article.link}">
+        <img src="${article.image}">
+        <div class="news-card-content">
+            <h3>${article.title}</h3>
+            <p>${article.desc}</p>
+        </div>
+    </a>
+    `;
+    return card;
 }
-
 
 /* SEARCH */
-
 function searchArticles(){
+    const input=document.getElementById("searchInput").value.toLowerCase();
+    const results=document.getElementById("searchResults");
+    const title=document.getElementById("searchTitle");
+    results.innerHTML="";
 
-const input=document.getElementById("searchInput").value.toLowerCase();
+    if(input.length===0){
+        results.style.display="none";
+        title.style.display="none";
+        return;
+    }
 
-const results=document.getElementById("searchResults");
-const title=document.getElementById("searchTitle");
+    const filtered=articles.filter(article=>
+        article.title.toLowerCase().includes(input) ||
+        article.desc.toLowerCase().includes(input)
+    );
 
-results.innerHTML="";
+    filtered.forEach(article=>{
+        results.appendChild(createCard(article));
+    });
 
-if(input.length===0){
-results.style.display="none";
-title.style.display="none";
-return;
+    results.style.display="grid";
+    title.style.display="block";
 }
-
-const filtered=articles.filter(article=>
-article.title.toLowerCase().includes(input) ||
-article.desc.toLowerCase().includes(input)
-);
-
-filtered.forEach(article=>{
-results.appendChild(createCard(article));
-});
-
-results.style.display="grid";
-title.style.display="block";
-
-}
-
 </script>
 
 </body>
-</html
+</html>
