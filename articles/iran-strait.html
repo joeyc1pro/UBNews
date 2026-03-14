@@ -4,23 +4,24 @@
 <meta charset="UTF-8">
 <title>Iran Vows to Keep Strait of Hormuz Closed | UBNews</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial;}
-html,body{height:100%;scroll-behavior:smooth;}
-body{display:flex;flex-direction:column;min-height:100vh;background:#1c1c1c;color:#eee;}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial}
+html,body{height:100%;scroll-behavior:smooth}
+body{display:flex;flex-direction:column;min-height:100vh;background:#1c1c1c;color:#eee}
 
-header{position:sticky;top:0;background:#0d1117;padding:1rem 2rem;}
-header h1{color:#f39c12;cursor:pointer;}
+header{position:sticky;top:0;background:#0d1117;padding:1rem 2rem}
+header h1{color:#f39c12;cursor:pointer}
 
-#progressBar{position:fixed;top:0;left:0;height:4px;width:0%;background:#f39c12;z-index:200;}
+#progressBar{position:fixed;top:0;height:4px;background:#f39c12;width:0}
 
-article{flex:1 0 auto;max-width:800px;margin:auto;padding:40px 20px;}
-article h1{color:#f39c12;margin-bottom:10px;}
-article p{margin-bottom:16px;color:#ccc;line-height:1.6;}
+article{flex:1 0 auto;max-width:800px;margin:auto;padding:40px 20px}
+article h1{color:#f39c12;margin-bottom:10px}
+article p{margin-bottom:16px;color:#ccc;line-height:1.6}
 
-.hero-image{width:100%;border-radius:8px;margin:20px 0;}
+.hero-image{width:100%;border-radius:8px;margin:20px 0}
 
-footer{background:#0d1117;text-align:center;padding:1.5rem;color:#aaa;}
+footer{background:#0d1117;text-align:center;padding:1.5rem;color:#aaa}
 </style>
 </head>
 
@@ -36,21 +37,21 @@ footer{background:#0d1117;text-align:center;padding:1.5rem;color:#aaa;}
 
 <h1>Iran Vows to Keep Strait of Hormuz Closed</h1>
 
-<img src="images/iran-strait.jpg" class="hero-image">
+<img src="../images/iran-strait.jpg" class="hero-image">
 
-<p><b>March 12, 2026 — UBNews World Desk</b></p>
+<p><b>March 12, 2026 — UBNews Middle East Desk</b></p>
 
-<p>Iran has issued a statement attributed to its new supreme leader declaring that the Strait of Hormuz will remain closed to certain international shipping.</p>
+<p>Iranian officials issued statements warning that restrictions could be placed on vessels entering the Strait of Hormuz as tensions in the region continue to rise.</p>
 
-<p>The announcement was broadcast on Iranian state television alongside a photo of Mojtaba Khamenei, who Iranian media described as the country’s new leader.</p>
+<p>The strait serves as one of the world's most important maritime chokepoints for global energy trade, with millions of barrels of oil passing through the waterway every day.</p>
 
-<p>The message warned that attacks against U.S. military bases in the region would continue as the conflict escalates.</p>
+<p>Diplomatic analysts say any attempt to restrict shipping through the route would likely have significant economic consequences.</p>
 
-<p>International organizations report that thousands of people have been displaced across the region as fighting spreads and tensions rise.</p>
+<p>Several governments have called for restraint and urged all sides to avoid actions that could disrupt international shipping.</p>
 
-<p>The Strait of Hormuz is one of the world's most important energy corridors, and any prolonged closure could significantly disrupt global oil markets.</p>
+<p>Security conditions in the region continue to be closely monitored by naval forces and international observers.</p>
 
-<p><a href="index.html" style="color:#f39c12;">← Back to UBNews</a></p>
+<p><a href="/index.html" style="color:#f39c12;">← Back to UBNews</a></p>
 
 </article>
 
@@ -60,8 +61,7 @@ footer{background:#0d1117;text-align:center;padding:1.5rem;color:#aaa;}
 window.addEventListener("scroll",function(){
 const winScroll=document.body.scrollTop||document.documentElement.scrollTop;
 const height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
-const scrolled=(winScroll/height)*100;
-document.getElementById("progressBar").style.width=scrolled+"%";
+document.getElementById("progressBar").style.width=(winScroll/height)*100+"%";
 });
 </script>
 
