@@ -6,88 +6,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial}
+html,body{height:100%;scroll-behavior:smooth}
+body{display:flex;flex-direction:column;min-height:100vh;background:#1c1c1c;color:#eee}
 
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial;}
+header{position:sticky;top:0;background:#0d1117;padding:1rem 2rem;z-index:100;box-shadow:0 2px 6px rgba(0,0,0,0.5)}
+header h1{color:#f39c12;cursor:pointer}
 
-html,body{
-height:100%;
-scroll-behavior:smooth;
-}
+#progressBar{position:fixed;top:0;left:0;height:4px;width:0;background:#f39c12;z-index:200}
 
-body{
-display:flex;
-flex-direction:column;
-min-height:100vh;
-background:#1c1c1c;
-color:#eee;
-}
+article{flex:1 0 auto;max-width:800px;margin:auto;padding:40px 20px}
+article h1{color:#f39c12;margin-bottom:12px}
+article p{margin-bottom:16px;color:#ccc;line-height:1.6}
 
-/* HEADER */
+.hero-image{width:100%;border-radius:8px;margin:20px 0}
 
-header{
-position:sticky;
-top:0;
-background:#0d1117;
-padding:1rem 2rem;
-z-index:100;
-box-shadow:0 2px 6px rgba(0,0,0,0.5);
-}
-
-header h1{
-color:#f39c12;
-cursor:pointer;
-}
-
-/* PROGRESS BAR */
-
-#progressBar{
-position:fixed;
-top:0;
-left:0;
-height:4px;
-width:0%;
-background:#f39c12;
-z-index:200;
-}
-
-/* ARTICLE */
-
-article{
-flex:1 0 auto;
-max-width:800px;
-margin:auto;
-padding:40px 20px;
-}
-
-article h1{
-color:#f39c12;
-margin-bottom:10px;
-}
-
-article p{
-margin-bottom:16px;
-color:#ccc;
-line-height:1.6;
-}
-
-/* ARTICLE IMAGE */
-
-.hero-image{
-width:100%;
-border-radius:8px;
-margin:20px 0;
-}
-
-/* FOOTER */
-
-footer{
-flex-shrink:0;
-background:#0d1117;
-text-align:center;
-padding:1.5rem;
-color:#aaa;
-}
-
+footer{background:#0d1117;text-align:center;padding:1.5rem;color:#aaa}
 </style>
 </head>
 
@@ -103,42 +37,32 @@ color:#aaa;
 
 <h1>US Carrier Group Moves Toward Strait of Hormuz</h1>
 
-<img src="images/carrier-hormuz.jpg" class="hero-image">
+<img src="../images/carrier-hormuz.jpg" class="hero-image">
 
 <p><b>March 12, 2026 — UBNews Military Desk</b></p>
 
-<p>A United States Navy carrier strike group has moved closer to the Strait of Hormuz as tensions in the region continue to rise following reports of naval mine deployments in the strategic shipping corridor.</p>
+<p>A United States Navy carrier strike group has moved closer to the Strait of Hormuz as tensions continue to increase across the region. Defense officials say the deployment is designed to strengthen maritime security and maintain freedom of navigation through one of the world's most important shipping corridors.</p>
 
-<p>The deployment is intended to strengthen maritime security and ensure freedom of navigation through one of the world's most critical oil transit routes. Nearly one-fifth of global oil shipments pass through the narrow waterway connecting the Persian Gulf to the Gulf of Oman.</p>
+<p>The Strait of Hormuz is a narrow waterway connecting the Persian Gulf to the Gulf of Oman. Nearly twenty percent of the world's oil shipments pass through the route, making it one of the most strategically significant maritime chokepoints on the planet.</p>
 
-<p>Naval analysts say the carrier group's presence provides both surveillance and rapid-response capability should commercial shipping or allied naval forces encounter threats such as naval mines or small attack boats.</p>
+<p>The carrier strike group includes guided-missile destroyers, cruisers, and an aircraft carrier capable of launching both reconnaissance and combat missions. Military analysts say the presence of the group provides rapid response capability if commercial shipping lanes face threats.</p>
 
-<p>The strike group includes guided-missile destroyers, cruisers, and aircraft capable of conducting reconnaissance, strike missions, and mine detection operations across the region.</p>
+<p>Naval patrols in the region have intensified following reports of naval mine activity and attacks on merchant vessels. Several allied nations have also increased surveillance flights and maritime monitoring operations.</p>
 
-<p>Mine countermeasure units and allied naval forces are also monitoring the situation closely while merchant shipping companies evaluate security conditions before entering the strait.</p>
+<p>Officials emphasized that the deployment is intended to ensure stability in the region and protect international trade routes rather than escalate tensions.</p>
 
-<p>Military officials emphasized that the mission is focused on protecting international shipping lanes and maintaining stability in a region that remains a vital artery for global energy supply.</p>
-
-<p><a href="index.html" style="color:#f39c12;">← Back to UBNews</a></p>
+<p><a href="/index.html" style="color:#f39c12;">← Back to UBNews</a></p>
 
 </article>
 
 <footer>© 2026 UBNews</footer>
 
 <script>
-
 window.addEventListener("scroll",function(){
-
-const winScroll=document.body.scrollTop || document.documentElement.scrollTop;
-
-const height=document.documentElement.scrollHeight - document.documentElement.clientHeight;
-
-const scrolled=(winScroll/height)*100;
-
-document.getElementById("progressBar").style.width=scrolled+"%";
-
+const winScroll=document.body.scrollTop||document.documentElement.scrollTop;
+const height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+document.getElementById("progressBar").style.width=(winScroll/height)*100+"%";
 });
-
 </script>
 
 </body>
