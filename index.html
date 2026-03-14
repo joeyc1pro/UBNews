@@ -12,274 +12,244 @@
 crossorigin="anonymous"></script>
 
 <style>
-
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
-font-family:Arial;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial, sans-serif;
 }
 
 html,body{
-height:100%;
-scroll-behavior:smooth;
+  height:100%;
+  scroll-behavior:smooth;
 }
 
 body{
-background:#1c1c1c;
-color:#eee;
-min-height:100vh;
-display:flex;
-flex-direction:column;
+  background:#1c1c1c;
+  color:#eee;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 
 /* Sticky header */
-
 header{
-position:sticky;
-top:0;
-background:#0d1117;
-padding:1rem 2rem;
-z-index:100;
-display:flex;
-justify-content:space-between;
-align-items:center;
+  position:sticky;
+  top:0;
+  background:#0d1117;
+  padding:16px 25px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:100;
+  box-shadow:0 2px 6px rgba(0,0,0,0.5);
 }
 
-header h1{
-color:#f39c12;
-cursor:pointer;
+.logo{
+  font-family: Arial, sans-serif;
+  font-size:24px;
+  color:#f39c12;
+  font-weight:normal;
+  cursor:pointer;
+}
+
+.search-icon{
+  font-size:22px;
+  cursor:pointer;
+  color:#f39c12;
 }
 
 /* News grid */
-
 .news-container{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:30px;
-max-width:1100px;
-margin:40px auto;
-padding:20px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:30px;
+  max-width:1100px;
+  margin:40px auto;
+  padding:20px;
 }
 
 .news-card{
-background:#0d1117;
-border-radius:10px;
-overflow:hidden;
-transition:transform .2s;
+  background:#0d1117;
+  border-radius:10px;
+  overflow:hidden;
+  transition:transform .2s, box-shadow .2s;
+  cursor:pointer;
 }
 
 .news-card:hover{
-transform:scale(1.03);
+  transform:scale(1.03);
+  box-shadow:0 6px 18px rgba(0,0,0,0.7);
 }
 
 .news-card img{
-width:100%;
-height:200px;
-object-fit:cover;
+  width:100%;
+  height:200px;
+  object-fit:cover;
 }
 
 .news-card-content{
-padding:15px;
+  padding:15px;
 }
 
 .news-card h3{
-color:#f39c12;
-margin-bottom:10px;
+  color:#f39c12;
+  margin-bottom:10px;
 }
 
 .news-card p{
-color:#bbb;
-font-size:14px;
+  color:#bbb;
+  font-size:14px;
 }
 
 /* Footer */
-
 footer{
-margin-top:auto;
-background:#0d1117;
-text-align:center;
-padding:20px;
-color:#aaa;
+  margin-top:auto;
+  background:#0d1117;
+  text-align:center;
+  padding:20px;
+  color:#aaa;
 }
 
+footer a{
+  color:#f39c12;
+  text-decoration:none;
+  margin:0 10px;
+}
+
+footer a:hover{
+  text-decoration:underline;
+}
+
+/* SEARCH OVERLAY */
+#searchOverlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.95);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:200;
+}
+
+.search-box{
+  width:90%;
+  max-width:650px;
+}
+
+#searchInput{
+  width:100%;
+  padding:15px;
+  font-size:18px;
+  border:none;
+  outline:none;
+  border-radius:6px;
+}
+
+.close-search{
+  position:absolute;
+  top:35px;
+  right:40px;
+  font-size:30px;
+  cursor:pointer;
+  color:white;
+}
+
+#searchResults{
+  margin-top:20px;
+  max-height:400px;
+  overflow-y:auto;
+}
+
+.result{
+  background:#1c1c1c;
+  padding:14px;
+  margin-bottom:10px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.result:hover{
+  background:#333;
+}
 </style>
 
 </head>
-
 <body>
 
 <header>
-
-<div class="logo" onclick="location.href='index.html'">
-UBNews
-</div>
-
-<div class="search-icon" onclick="openSearch()">
-🔍
-</div>
-
+  <div class="logo" onclick="location.href='index.html'">UBNews</div>
+  <div class="search-icon" onclick="openSearch()">🔍</div>
 </header>
-
 
 <div class="news-container" id="newsContainer"></div>
 
-
 <footer>
-
-<p>© 2026 UBNews</p>
-
-<p>
-<a href="privacy.html">Privacy Policy</a> |
-<a href="termsofservice.html">Terms of Service</a>
-</p>
-
+  <p>© 2026 UBNews</p>
+  <p>
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="termsofservice.html">Terms of Service</a>
+  </p>
 </footer>
 
-
 <!-- SEARCH OVERLAY -->
-
 <div id="searchOverlay">
-
-<span class="close-search" onclick="closeSearch()">✖</span>
-
-<div class="search-box">
-
-<input
-type="text"
-id="searchInput"
-placeholder="Search UBNews..."
-onkeyup="searchArticles()"
->
-
-<div id="searchResults"></div>
-
+  <span class="close-search" onclick="closeSearch()">✖</span>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search UBNews..." onkeyup="searchArticles()">
+    <div id="searchResults"></div>
+  </div>
 </div>
-
-</div>
-
 
 <script>
-
 const articles = [
-
-{
-title:"US Carrier Group Moves Toward Strait of Hormuz",
-desc:"A United States Navy carrier strike group has moved closer to the Strait of Hormuz as tensions rise in the region. Military officials say the deployment is intended to strengthen maritime security and ensure freedom of navigation through one of the world's most critical shipping routes.",
-image:"images/carrier-hormuz.jpg",
-link:"articles/carrier-hormuz.html"
-},
-
-{
-title:"Mine-Laying Operations Reported in Strait of Hormuz",
-desc:"Naval mines have reportedly been deployed in the Strait of Hormuz, raising concerns among international shipping companies. Defense analysts warn that any disruption in this narrow waterway could affect a large portion of the world's oil trade.",
-image:"images/hormuz-mines.jpg",
-link:"articles/hormuz-mines.html"
-},
-
-{
-title:"US Defense Spending Sees Largest Increase in Decade",
-desc:"Congress has approved an $875 billion defense budget that will focus on modernizing equipment, strengthening cyber defense systems, and improving readiness across the armed forces.",
-image:"images/defense-spending.jpg",
-link:"articles/defense-spending.html"
-},
-
-{
-title:"US Troops Conduct Joint Exercises in Eastern Europe",
-desc:"US and NATO forces are conducting large-scale joint training exercises across Eastern Europe. Officials say the drills improve coordination, readiness, and interoperability between allied militaries.",
-image:"images/europe-exercises.jpg",
-link:"articles/europe-exercises.html"
-},
-
-{
-title:"Thai Cargo Ship Attacked Near Strait of Hormuz",
-desc:"A Thai-flagged cargo vessel was struck during rising tensions in the Strait of Hormuz. Most of the crew were rescued by naval forces while international maritime authorities investigate the incident.",
-image:"images/thai-ship.jpg",
-link:"articles/thai-ship.html"
-},
-
-{
-title:"Iran Vows to Keep Strait of Hormuz Closed",
-desc:"Iran issued a statement warning that new restrictions may be placed on ships entering the strategic Strait of Hormuz. The announcement has drawn international attention because of the strait’s importance to global energy markets.",
-image:"images/iran-strait.jpg",
-link:"articles/iran-strait.html"
-},
-
-{
-title:"Global Oil Prices Surge Amid Hormuz Shipping Fears",
-desc:"Oil markets reacted sharply after renewed security warnings in the Strait of Hormuz. Traders fear disruptions to tanker traffic could impact global energy supplies and drive fuel prices higher.",
-image:"images/oil-prices.jpg",
-link:"articles/oil-prices-hormuz.html"
-},
-
-{
-title:"International Naval Coalition Expands Patrols in Persian Gulf",
-desc:"Several allied nations have increased naval patrols across the Persian Gulf to protect commercial shipping routes as tensions continue to rise around the Strait of Hormuz.",
-image:"images/gulf-patrols.jpg",
-link:"articles/gulf-patrols.html"
-}
-
+  { title:"US Carrier Group Moves Toward Strait of Hormuz", desc:"A United States Navy carrier strike group has moved closer to the Strait of Hormuz as tensions rise in the region. Military officials say the deployment is intended to strengthen maritime security and ensure freedom of navigation through one of the world's most critical shipping routes.", image:"images/carrier-hormuz.jpg", link:"articles/carrier-hormuz.html" },
+  { title:"Mine-Laying Operations Reported in Strait of Hormuz", desc:"Naval mines have reportedly been deployed in the Strait of Hormuz, raising concerns among international shipping companies. Defense analysts warn that any disruption in this narrow waterway could affect a large portion of the world's oil trade.", image:"images/hormuz-mines.jpg", link:"articles/hormuz-mines.html" },
+  { title:"US Defense Spending Sees Largest Increase in Decade", desc:"Congress has approved an $875 billion defense budget that will focus on modernizing equipment, strengthening cyber defense systems, and improving readiness across the armed forces.", image:"images/defense-spending.jpg", link:"articles/defense-spending.html" },
+  { title:"US Troops Conduct Joint Exercises in Eastern Europe", desc:"US and NATO forces are conducting large-scale joint training exercises across Eastern Europe. Officials say the drills improve coordination, readiness, and interoperability between allied militaries.", image:"images/europe-exercises.jpg", link:"articles/europe-exercises.html" },
+  { title:"Thai Cargo Ship Attacked Near Strait of Hormuz", desc:"A Thai-flagged cargo vessel was struck during rising tensions in the Strait of Hormuz. Most of the crew were rescued by naval forces while international maritime authorities investigate the incident.", image:"images/thai-ship.jpg", link:"articles/thai-ship.html" },
+  { title:"Iran Vows to Keep Strait of Hormuz Closed", desc:"Iran issued a statement warning that new restrictions may be placed on ships entering the strategic Strait of Hormuz. The announcement has drawn international attention because of the strait’s importance to global energy markets.", image:"images/iran-strait.jpg", link:"articles/iran-strait.html" },
+  { title:"Global Oil Prices Surge Amid Hormuz Shipping Fears", desc:"Oil markets reacted sharply after renewed security warnings in the Strait of Hormuz. Traders fear disruptions to tanker traffic could impact global energy supplies and drive fuel prices higher.", image:"images/oil-prices.jpg", link:"articles/oil-prices-hormuz.html" },
+  { title:"International Naval Coalition Expands Patrols in Persian Gulf", desc:"Several allied nations have increased naval patrols across the Persian Gulf to protect commercial shipping routes as tensions continue to rise around the Strait of Hormuz.", image:"images/gulf-patrols.jpg", link:"articles/gulf-patrols.html" }
 ];
 
 const container=document.getElementById("newsContainer");
-
 articles.forEach(article=>{
-
-container.innerHTML+=`
-
-<div class="news-card" onclick="location.href='${article.link}'">
-
-<img src="${article.image}">
-
-<div class="news-content">
-
-<h2>${article.title}</h2>
-
-<p>${article.desc}</p>
-
-</div>
-
-</div>
-
-`;
-
+  container.innerHTML+=`
+    <div class="news-card" onclick="location.href='${article.link}'">
+      <img src="${article.image}">
+      <div class="news-card-content">
+        <h3>${article.title}</h3>
+        <p>${article.desc}</p>
+      </div>
+    </div>
+  `;
 });
 
-
 function openSearch(){
-document.getElementById("searchOverlay").style.display="flex";
-document.getElementById("searchInput").focus();
+  document.getElementById("searchOverlay").style.display="flex";
+  document.getElementById("searchInput").focus();
 }
 
 function closeSearch(){
-document.getElementById("searchOverlay").style.display="none";
-document.getElementById("searchResults").innerHTML="";
-document.getElementById("searchInput").value="";
+  document.getElementById("searchOverlay").style.display="none";
+  document.getElementById("searchResults").innerHTML="";
+  document.getElementById("searchInput").value="";
 }
 
 function searchArticles(){
-
-const input=document.getElementById("searchInput").value.toLowerCase();
-const results=document.getElementById("searchResults");
-
-results.innerHTML="";
-
-articles.forEach(article=>{
-
-if(article.title.toLowerCase().includes(input) || article.desc.toLowerCase().includes(input)){
-
-results.innerHTML+=`
-<div class="result" onclick="location.href='${article.link}'">
-${article.title}
-</div>
-`;
-
+  const input=document.getElementById("searchInput").value.toLowerCase();
+  const results=document.getElementById("searchResults");
+  results.innerHTML="";
+  articles.forEach(article=>{
+    if(article.title.toLowerCase().includes(input) || article.desc.toLowerCase().includes(input)){
+      results.innerHTML+=`<div class="result" onclick="location.href='${article.link}'">${article.title}</div>`;
+    }
+  });
 }
-
-});
-
-}
-
 </script>
 
 </body>
