@@ -6,77 +6,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial}
+html,body{height:100%;scroll-behavior:smooth}
+body{display:flex;flex-direction:column;min-height:100vh;background:#1c1c1c;color:#eee}
 
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial;}
+header{position:sticky;top:0;background:#0d1117;padding:1rem 2rem;z-index:100}
+header h1{color:#f39c12;cursor:pointer}
 
-html,body{
-height:100%;
-scroll-behavior:smooth;
-}
+#progressBar{position:fixed;top:0;height:4px;background:#f39c12;width:0}
 
-body{
-display:flex;
-flex-direction:column;
-min-height:100vh;
-background:#1c1c1c;
-color:#eee;
-}
+article{flex:1 0 auto;max-width:800px;margin:auto;padding:40px 20px}
+article h1{color:#f39c12;margin-bottom:10px}
+article p{margin-bottom:16px;color:#ccc;line-height:1.6}
 
-header{
-position:sticky;
-top:0;
-background:#0d1117;
-padding:1rem 2rem;
-z-index:100;
-box-shadow:0 2px 6px rgba(0,0,0,0.5);
-}
+.hero-image{width:100%;border-radius:8px;margin:20px 0}
 
-header h1{
-color:#f39c12;
-cursor:pointer;
-}
-
-#progressBar{
-position:fixed;
-top:0;
-left:0;
-height:4px;
-width:0%;
-background:#f39c12;
-z-index:200;
-}
-
-article{
-flex:1 0 auto;
-max-width:800px;
-margin:auto;
-padding:40px 20px;
-}
-
-article h1{
-color:#f39c12;
-margin-bottom:10px;
-}
-
-article p{
-margin-bottom:16px;
-color:#ccc;
-line-height:1.6;
-}
-
-.hero-image{
-width:100%;
-border-radius:8px;
-margin:20px 0;
-}
-
-footer{
-background:#0d1117;
-text-align:center;
-padding:1.5rem;
-color:#aaa;
-}
-
+footer{background:#0d1117;text-align:center;padding:1.5rem;color:#aaa}
 </style>
 </head>
 
@@ -92,23 +37,21 @@ color:#aaa;
 
 <h1>Global Oil Prices Surge Amid Hormuz Shipping Fears</h1>
 
-<img src="images/oil-prices-hormuz.jpg" class="hero-image">
+<img src="../images/oil-prices.jpg" class="hero-image">
 
 <p><b>March 13, 2026 — UBNews Energy Desk</b></p>
 
-<p>Global oil prices rose sharply Friday after growing security concerns in the Strait of Hormuz prompted shipping companies and energy traders to reassess the safety of tanker routes through the strategic waterway.</p>
+<p>Global oil prices rose sharply as tensions around the Strait of Hormuz continued to disrupt tanker traffic and energy markets worldwide. Traders reacted quickly to the growing risk that oil shipments passing through the narrow waterway could face delays or security threats.</p>
 
-<p>Energy analysts say the market reaction reflects fears that any disruption in the narrow corridor could significantly impact global energy supplies. Roughly 20 percent of the world's oil passes through the strait, making it one of the most important shipping routes in the international energy market.</p>
+<p>The strait is one of the most critical energy shipping routes on the planet. Roughly one-fifth of the world’s oil supply moves through the passage each day, connecting the Persian Gulf with global markets. When shipping traffic slows or stops, energy markets often respond with immediate price increases.</p>
 
-<p>Insurance costs for tankers operating in the region have also increased as maritime risk assessments are updated following reports of naval mines and attacks on commercial vessels.</p>
+<p>Energy analysts say the recent surge in oil prices reflects uncertainty about whether tanker traffic will remain steady in the coming weeks. Even temporary disruptions can ripple through global fuel markets, affecting gasoline prices and industrial costs.</p>
 
-<p>Several shipping companies have reportedly delayed voyages while awaiting updated security guidance from naval forces currently operating in the Persian Gulf.</p>
+<p>Insurance rates for tankers traveling through the region have also increased as maritime risk assessments are updated. Some shipping companies have reportedly delayed voyages while awaiting additional naval escorts or security guarantees.</p>
 
-<p>Market strategists say even limited disruptions could cause noticeable increases in fuel prices worldwide if tanker traffic slows or insurance premiums continue rising.</p>
+<p>Economic experts warn that prolonged disruption in the strait could affect industries worldwide, from aviation to manufacturing, because oil remains a core component of the global energy system.</p>
 
-<p>Officials monitoring the region say the situation remains fluid, and naval patrols have increased to help ensure commercial shipping lanes remain open.</p>
-
-<p><a href="index.html" style="color:#f39c12;">← Back to UBNews</a></p>
+<p><a href="/index.html" style="color:#f39c12;">← Back to UBNews</a></p>
 
 </article>
 
@@ -116,13 +59,9 @@ color:#aaa;
 
 <script>
 window.addEventListener("scroll",function(){
-
 const winScroll=document.body.scrollTop||document.documentElement.scrollTop;
 const height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
-const scrolled=(winScroll/height)*100;
-
-document.getElementById("progressBar").style.width=scrolled+"%";
-
+document.getElementById("progressBar").style.width=(winScroll/height)*100+"%";
 });
 </script>
 
